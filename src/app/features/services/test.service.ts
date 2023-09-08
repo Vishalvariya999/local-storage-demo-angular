@@ -22,6 +22,11 @@ export class TestService {
     localStorage.setItem('TodoData', JSON.stringify(todoDataArray));
   }
 
+  public editRecored(data: any) {
+    console.log('data', data);
+    return data;
+  }
+
   public deleteRecored(id: number) {
     const existingData = localStorage.getItem('TodoData');
     let todoDataArray = [];

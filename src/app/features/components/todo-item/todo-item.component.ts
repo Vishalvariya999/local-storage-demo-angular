@@ -24,6 +24,12 @@ export class TodoItemComponent implements OnInit {
     this.router.navigate(['/todo-form']);
   }
 
+  public onEdit(data: any) {
+    console.log('data', data);
+    this.testService.editRecored(data);
+    this.router.navigate(['/todo-form']);
+  }
+
   public onDelete(id: number) {
     this.testService.deleteRecored(id);
     this.getData();
