@@ -25,6 +25,19 @@ export class TestService {
   }
 
   public deleteRecored(id: number) {
-    return this.TodoData.splice(id, 1);
+    console.log('id', id);
+    const existingData = localStorage.getItem('TodoData');
+    let todoDataArray = [];
+    if (existingData) {
+      // Parse existing data from JSON string to an array
+      todoDataArray = JSON.parse(existingData);
+      console.log('todoDataArray', todoDataArray);
+      const newArray = todoDataArray.filter((data: any) => {
+        console.log('data', data);
+        return data.id !== id;
+      });
+      console.log('newArray', newArray);
+      localStorage.setItem('TodoData', JSON.stringify(newArray));
+    }
   }
 }
