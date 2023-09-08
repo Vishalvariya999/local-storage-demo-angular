@@ -22,8 +22,14 @@
                         <th scope="row">{{i +1}}</th>
                         <td>{{data?.name}}</td>
                         <td>{{data?.desc}}</td>
-                        <td>{{data?.priority}}</td>
-                        <td>{{data?.result}}</td>
+                        <td>
+                            <small
+                                [ngClass]="data?.priority === 'Low' ? 'badge text-bg-danger':'badge text-bg-success'">{{data?.priority}}</small>
+                        </td>
+                        <td>
+                            <small
+                                [ngClass]="data?.result === 'Running' ? 'badge text-bg-danger':'badge text-bg-success'">{{data?.result}}</small>
+                        </td>
                         <td>
                             <button class="btn btn-sm btn-success mx-1">Edit</button>
                             <button class="btn btn-sm btn-danger" (click)="onDelete(data?.id)">Delete</button>
