@@ -24,11 +24,11 @@
                         <td>{{data?.desc}}</td>
                         <td>
                             <small
-                                [ngClass]="data?.priority === 'Low' ? 'badge text-bg-danger':'badge text-bg-success'">{{data?.priority}}</small>
+                                [class]="data?.priority === 'Low' ? 'badge text-bg-danger' : (data?.priority === 'Medium' ? 'badge text-bg-warning' : 'badge text-bg-success')">{{data?.priority}}</small>
                         </td>
                         <td>
                             <small
-                                [ngClass]="data?.result === 'Running' ? 'badge text-bg-danger':'badge text-bg-success'">{{data?.result}}</small>
+                                [class]="data?.result === 'Running' ? 'badge text-bg-danger' : (data?.result === 'Pending' ? 'badge text-bg-warning' : 'badge text-bg-success')">{{data?.result}}</small>
                         </td>
                         <td>
                             <button class="btn btn-sm btn-success mx-1">Edit</button>
