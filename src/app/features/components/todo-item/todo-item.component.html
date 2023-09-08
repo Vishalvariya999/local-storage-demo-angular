@@ -1,0 +1,39 @@
+<div class="container-fluid d-flex justify-content-center mt-5">
+    <div class="card w-75">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h2 class="h2 text-center">Todo List</h2>
+                <button class="btn btn-primary" (click)="onChange()">Add Item</button>
+            </div>
+            <hr>
+            <table class="table">
+                <thead class="table table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of arrays">
+                        <th scope="row">{{data?.id}}</th>
+                        <td>{{data?.name}}</td>
+                        <td>{{data?.desc}}</td>
+                        <td>{{data?.priority}}</td>
+                        <td>{{data?.result}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-success mx-1">Edit</button>
+                            <button class="btn btn-sm btn-danger" (click)="onDelete(data?.id)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!arrays.length">
+                        <td class="text-center" colspan="6">No recored foound</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
