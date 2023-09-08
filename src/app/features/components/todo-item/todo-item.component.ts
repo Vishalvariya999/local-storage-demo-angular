@@ -18,7 +18,6 @@ export class TodoItemComponent implements OnInit {
   private getData() {
     const localStorageData = localStorage.getItem('TodoData');
     this.arrays = localStorageData !== null ? JSON.parse(localStorageData) : [];
-    console.log('this.arrays', this.arrays);
   }
 
   public onChange() {

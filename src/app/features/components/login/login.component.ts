@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   public frmLogin!: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.frmLogin = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -27,6 +28,7 @@ export class LoginComponent {
       };
       console.log('data', data);
       localStorage.setItem('User-detals', JSON.stringify(data));
+      this.router.navigate(['/todo-item']);
       this.frmLogin.reset();
     }
   }

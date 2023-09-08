@@ -28,7 +28,6 @@ export class CreateEditTodoComponent {
       console.log('Please enter valid details');
     } else {
       const randomNumber = new Date().getTime();
-      console.log('randomNumber', randomNumber);
       const data = {
         id: randomNumber,
         ...this.frmTodo.value,
