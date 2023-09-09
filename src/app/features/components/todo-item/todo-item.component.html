@@ -31,8 +31,10 @@
                                 [class]="data?.result === 'Running' ? 'badge text-bg-danger' : (data?.result === 'Pending' ? 'badge text-bg-warning' : 'badge text-bg-success')">{{data?.result}}</small>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-success mx-1" (click)="onEdit(data)">Edit</button>
-                            <button class="btn btn-sm btn-danger" (click)="onDelete(data?.id)">Delete</button>
+                            <button type="button" class="btn btn-sm btn-success mx-1"
+                                (click)="onEdit(data)">Edit</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" (click)="sendId(data?.id)">Delete</button>
                         </td>
                     </tr>
                     <tr *ngIf="!arrays.length">
@@ -40,6 +42,22 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure delete this recored ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" (click)="onDelete()"
+                                data-bs-dismiss="modal">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class TodoItemComponent implements OnInit {
   public arrays: any = [];
+  private deleteId!: number;
   constructor(private testService: TestService, private router: Router) {}
 
   ngOnInit(): void {
@@ -30,8 +31,12 @@ export class TodoItemComponent implements OnInit {
     this.router.navigate(['/todo-form']);
   }
 
-  public onDelete(id: number) {
-    this.testService.deleteRecored(id);
+  public sendId(id: number) {
+    this.deleteId = id;
+  }
+
+  public onDelete() {
+    this.testService.deleteRecored(this.deleteId);
     this.getData();
   }
 }
