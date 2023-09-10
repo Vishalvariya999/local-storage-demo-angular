@@ -21,12 +21,7 @@ export class TodoItemComponent implements OnInit {
     this.arrays = localStorageData !== null ? JSON.parse(localStorageData) : [];
   }
 
-  public onChange() {
-    this.router.navigate(['/todo-form']);
-  }
-
   public onEdit(data: any) {
-    console.log('data', data);
     this.testService.editRecored(data);
     this.router.navigate(['/todo-form']);
   }

@@ -39,4 +39,8 @@ export class TestService {
       localStorage.setItem('TodoData', JSON.stringify(newArray));
     }
   }
+
+  public login() {
+    return localStorage.getItem('User-detals');
+  }
 }
