@@ -24,11 +24,11 @@
                         <td>{{data?.desc}}</td>
                         <td>
                             <small
-                                [class]="data?.priority === 'High' ? 'badge text-bg-danger' : (data?.priority === 'Medium' ? 'badge text-bg-warning' : 'badge text-bg-success')">{{data?.priority}}</small>
+                                [class]="data?.priority === 'High' ? 'badge text-bg-danger' : (data?.priority === 'Medium' ? 'badge text-bg-primary' : 'badge text-bg-success')">{{data?.priority}}</small>
                         </td>
                         <td>
                             <small
-                                [class]="data?.result === 'Running' ? 'badge text-bg-danger' : (data?.result === 'Pending' ? 'badge text-bg-warning' : 'badge text-bg-success')">{{data?.result}}</small>
+                                [class]="data?.result === 'Running' ? 'badge text-bg-danger' : (data?.result === 'Pending' ? 'badge text-bg-primary' : 'badge text-bg-success')">{{data?.result}}</small>
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm btn-success mx-1"
