@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h2 class="h2">Todo Form</h2>
-                <a [routerLink]="'/todo-item'" class="text-primary mt-2 text-decoration-none fw-bold">Show list</a>
+                <a [routerLink]="'/todo-item'" class="mt-2 text-decoration-none btn btn-primary">Show list</a>
             </div>
             <hr>
             <form [formGroup]="frmTodo" class="row g-3" (ngSubmit)="onSubmit()">
