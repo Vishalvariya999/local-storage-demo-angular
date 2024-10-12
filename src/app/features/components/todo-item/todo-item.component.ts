@@ -22,7 +22,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   public onEdit(data: any) {
-    this.testService.editRecored(data);
+    this.testService.patchData(data);
     this.router.navigate(['/todo-form']);
   }
 

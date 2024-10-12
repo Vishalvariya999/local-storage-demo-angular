@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h2 class="h2">Todo Form</h2>
-                <a [routerLink]="'/todo-item'" class="mt-2 text-decoration-none btn btn-primary">Show list</a>
+                <a [routerLink]="'/todo-item'" (click)="onShowList()" class="mt-2 text-decoration-none btn btn-primary">Show list</a>
             </div>
             <hr>
             <form [formGroup]="frmTodo" class="row g-3" (ngSubmit)="onSubmit()">
@@ -18,7 +18,7 @@
                 <div class="col-lg-12">
                     <label for="" class="form-label">Priority</label>
                     <select class="form-select" formControlName="priority">
-                        <option selected>Select Priority</option>
+                        <option value=''>Select Priority</option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>

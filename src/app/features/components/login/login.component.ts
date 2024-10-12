@@ -21,12 +21,10 @@ export class LoginComponent {
       this.frmLogin.markAllAsTouched();
       console.log('Please fill details proper');
     } else {
-      console.log('this.frmLogin.value', this.frmLogin.value);
       const data = {
         ...this.frmLogin.value,
         isLogin: true,
       };
-      console.log('data', data);
       localStorage.setItem('User-detals', JSON.stringify(data));
       this.router.navigate(['/todo-item']);
       this.frmLogin.reset();

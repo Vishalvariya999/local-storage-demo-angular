@@ -1,41 +1,67 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TestService } from '../../services/test.service';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-create-edit-todo',
   templateUrl: './create-edit-todo.component.html',
   styleUrls: ['./create-edit-todo.component.scss'],
 })
-export class CreateEditTodoComponent {
+export class CreateEditTodoComponent implements OnInit, OnDestroy{
   public frmTodo!: FormGroup;
+  private destroy$ = new Subject();
+
   constructor(
     private fb: FormBuilder,
     private testService: TestService,
     private router: Router
-  ) {
-    this.frmTodo = this.fb.group({
-      name: ['', Validators.required],
-      desc: ['', Validators.required],
-      priority: ['', Validators.required],
-      result: ['', Validators.required],
-    });
+  ) { }
+
+  ngOnInit(): void {
+    this.testService.editableItem$
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((res: any) => {
+      this.initializeForm(res);
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
   }
 
   public onSubmit() {
     if (this.frmTodo.invalid) {
       console.log('Please enter valid details');
-    } else {
+    } 
+    else {
       const randomNumber = new Date().getTime();
       const data = {
-        id: randomNumber,
         ...this.frmTodo.value,
+        id: randomNumber
       };
-      console.log('data', data);
-      this.testService.addRecoored(data);
+      if (this.frmTodo.get('id')?.value === 0) {
+        this.testService.addRecoored(data);
+      } else {
+        this.testService.editRecord(this.frmTodo.value);
+      }
       this.router.navigate(['/todo-item']);
       this.frmTodo.reset();
     }
+  }
+
+  public initializeForm(todoItem?: any) {
+    this.frmTodo = this.fb.group({
+      id: [todoItem?.id || 0],
+      name: [todoItem?.name || null, [Validators.required]],
+      desc: [todoItem?.desc || null, [Validators.required]],
+      priority: [todoItem?.priority || null, [Validators.required]],
+      result: [todoItem?.result || null, [Validators.required]],
+    });
+  }
+
+  public onShowList() {
+    this.testService.editableItem$.next(null);
   }
 }
