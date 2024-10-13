@@ -8,40 +8,44 @@
             <hr>
             <form [formGroup]="frmTodo" class="row g-3" (ngSubmit)="onSubmit()">
                 <div class="col-lg-12">
-                    <label for="" class="form-label">Name</label>
-                    <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" [ngClass]="{'is-invalid': this.frmTodo.get('name')?.invalid && this.frmTodo.get('name')?.touched}" id="name" formControlName="name" placeholder="Enter name" required>
+                    <span id="name" class="text-danger" *ngIf="this.frmTodo.get('name')?.invalid && this.frmTodo.get('name')?.touched">Name is required</span>
                 </div>
                 <div class="col-lg-12">
                     <label for="" class="form-label">Description</label>
-                    <textarea class="form-control" formControlName="desc" placeholder="Enter description"></textarea>
+                    <textarea class="form-control" [ngClass]="{'is-invalid': this.frmTodo.get('desc')?.invalid && this.frmTodo.get('desc')?.touched}" formControlName="desc" placeholder="Enter description"></textarea>
+                    <span class="text-danger" *ngIf="this.frmTodo.get('desc')?.invalid && this.frmTodo.get('desc')?.touched">Description is required</span>
                 </div>
                 <div class="col-lg-12">
                     <label for="" class="form-label">Priority</label>
-                    <select class="form-select" formControlName="priority">
-                        <option value=''>Select Priority</option>
+                    <select class="form-select" formControlName="priority" [ngClass]="{'is-invalid': this.frmTodo.get('priority')?.invalid && this.frmTodo.get('priority')?.touched}">
+                        <option disabled value=''>Select Priority</option>
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
                     </select>
+                    <span class="text-danger" *ngIf="this.frmTodo.get('priority')?.invalid && this.frmTodo.get('priority')?.touched">Priority is required</span>
                 </div>
                 <div class="col-lg-12">
                     <label for="" class="form-label">Result</label><br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="result" id="inlineRadio1"
-                            formControlName="result" value="Running">
+                            formControlName="result" [ngClass]="{'is-invalid': this.frmTodo.get('result')?.invalid && this.frmTodo.get('result')?.touched}" value="Running">
                         <label class="form-check-label" for="inlineRadio1">Running</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="result" id="inlineRadio2"
+                        <input class="form-check-input" [ngClass]="{'is-invalid': this.frmTodo.get('result')?.invalid && this.frmTodo.get('result')?.touched}" type="radio" name="result" id="inlineRadio2"
                             formControlName="result" value="Pending">
                         <label class="form-check-label" for="inlineRadio2">Pending</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="result" id="inlineRadio3"
+                        <input class="form-check-input" [ngClass]="{'is-invalid': this.frmTodo.get('result')?.invalid && this.frmTodo.get('result')?.touched}" type="radio" name="result" id="inlineRadio3"
                             formControlName="result" value="Completed">
                         <label class="form-check-label" for="inlineRadio3">Completed</label>
                     </div>
                 </div>
+                <span class="text-danger" *ngIf="this.frmTodo.get('result')?.invalid && this.frmTodo.get('result')?.touched">Result is required</span>
                 <hr>
                 <div class="col-lg-12">
                     <button type="submit" class="btn btn-md btn-primary">Submit</button>

@@ -33,7 +33,8 @@ export class CreateEditTodoComponent implements OnInit, OnDestroy{
 
   public onSubmit() {
     if (this.frmTodo.invalid) {
-      console.log('Please enter valid details');
+      this.frmTodo.markAllAsTouched();
+      return;
     } 
     else {
       const randomNumber = new Date().getTime();
@@ -56,7 +57,7 @@ export class CreateEditTodoComponent implements OnInit, OnDestroy{
       id: [todoItem?.id || 0],
       name: [todoItem?.name || null, [Validators.required]],
       desc: [todoItem?.desc || null, [Validators.required]],
-      priority: [todoItem?.priority || null, [Validators.required]],
+      priority: [todoItem?.priority || '', [Validators.required]],
       result: [todoItem?.result || null, [Validators.required]],
     });
   }
